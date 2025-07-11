@@ -86,7 +86,32 @@ group by
 	p.subcategory,
 	p.cost;
 
+/*
+===================================================================
+Product Report
+===================================================================
+Purpose:
+	-This report consolidates key product metrics and behaviors.
 
+Highlights:
+	1. Gathers essential fileds such as product name, category, subcategory, and cost.
+	2. Segments products by revenu to identify high_performers, Mid-Rabge, or Low-Performers.
+	3. Aggregates Products-level metrics:
+		- total orders
+		- total sales
+		- total quanity sold
+		- total customers (unique)
+		- lifespan (in months)
+	4. calculates valuable KPIs:
+		- recency (months since last sale)
+		- average order revenue (AOR)
+		- average monthly revenue
+===================================================================
+*/
+if object_id('gold.report_products','v') is not null
+	drop view gold.report_products;
+	
+go
 create view gold.report_products as
 with base_query as (
 /*--------------------------------------------------------------------------
