@@ -195,5 +195,7 @@ total_products,
 lifespan
 from customer_aggregation;
 
+select * from gold.report_customers;
+
 ---------final Above last one 
 -- END
