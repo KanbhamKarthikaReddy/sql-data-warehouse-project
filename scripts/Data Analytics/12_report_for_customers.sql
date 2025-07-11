@@ -79,6 +79,39 @@ on f.customer_key = f.customer_key
 where order_date is not null
 );
 
+/* 
+=====================================================================================
+Customer Report
+=====================================================================================
+Purpose:
+	- This report consolidate key customer metrics and behaviors
+
+Highlights:
+	1. Gathers essential fields such as names, ages, and transaction details.
+	2. Segments customers into categories (VIP, Regular, New) and age groups.
+	3. Aggregates customer-level metrics:
+		- Total Orders
+		- Total Sales
+		- Total Quantity Purchased
+		- Total Products
+		- Lifespan (in Months)
+	4. Calculates valuable KPIs:
+		- Recency (months since last order)
+		- Average order value
+		- Average monthly spend
+=====================================================================================
+*/
+
+/*------------------------------------------------------------------------------------
+1) Base Query: Retrives core columns from tables
+------------------------------------------------------------------------------------*/
+
+if object_id('gold.report_customers','v') is not null
+	drop view gold.report_customers;
+	
+go
+
+create view gold.report_customers as 
 with base_query as (
 select
 f.order_number,
